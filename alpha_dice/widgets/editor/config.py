@@ -1,15 +1,17 @@
+from PyQt5.QtCore import QObject
 from PyQt5.QtGui import QFont
 
 from widgets.editor.lexers import PythonLexer
 
 
-class EditorProperty:
+class EditorProperty(QObject):
     """
     Provides access to methods of code_editor.
     """
     def __init__(self, ui):
         """
-        Loads default configuration for code_editor including the lexer.
+        Loads default configuration for code_editor including
+        the lexer.
 
         :param ui: used to access 'main.ui' methods
         """
@@ -25,3 +27,4 @@ class EditorProperty:
         # Lexer
         self.lexer = PythonLexer(self.ui, self.font)
         self.lexer.lock()
+

@@ -38,7 +38,7 @@
          <enum>QTabWidget::Rounded</enum>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <property name="elideMode">
          <enum>Qt::ElideNone</enum>
@@ -70,9 +70,6 @@
               <property name="whatsThis">
                <string/>
               </property>
-              <property name="horizontalScrollBarPolicy">
-               <enum>Qt::ScrollBarAlwaysOff</enum>
-              </property>
              </widget>
             </item>
            </layout>
@@ -88,13 +85,24 @@
            <layout class="QVBoxLayout" name="console_layout">
             <item>
              <widget class="QTextEdit" name="console_log">
-              <property name="readOnly">
-               <bool>true</bool>
+              <property name="undoRedoEnabled">
+               <bool>false</bool>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="console_input"/>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QLabel" name="console_prompt">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="console_input"/>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>
@@ -112,7 +120,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
@@ -123,6 +131,7 @@
    <class>QsciScintilla</class>
    <extends>QFrame</extends>
    <header>Qsci/qsciscintilla.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

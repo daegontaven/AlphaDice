@@ -9,8 +9,8 @@ from widgets.signals import PrimitiveSignals
 
 class BufferQueue(QThread):
     """
-    Thread used to get strings from DelayedBuffer.queue and emit them as
-    signals in constant intervals.
+    Thread used to get strings from DelayedBuffer.queue and
+    emit them as signals in constant intervals.
     """
     WRITE_DELAY = 0.005
 
@@ -23,7 +23,8 @@ class BufferQueue(QThread):
         """
         Copies DelayedBuffer.queue to the local namespace.
 
-        :param queue: contains outputs from the stdout of an interpreter
+        :param queue: contains outputs from the stdout
+                      of an interpreter
         """
         self.queue = queue
 
@@ -37,8 +38,8 @@ class BufferQueue(QThread):
 
 class DelayedBuffer:
     """
-    A buffer that uses a queue to store strings. It removes the first appended
-    string first in a constant interval.
+    A buffer that uses a queue to store strings. It removes the
+    first appended string first in a constant interval.
     """
     def __init__(self, output):
         """
@@ -68,7 +69,8 @@ class NewLineIO(StringIO):
     """
     def __init__(self, *args, **kwargs):
         """
-        Starts a delayed buffer to store writes due to UI refresh limitations.
+        Starts a delayed buffer to store writes due to UI
+        refresh limitations.
         """
         StringIO.__init__(self, *args, **kwargs)
         self.output = PrimitiveSignals()

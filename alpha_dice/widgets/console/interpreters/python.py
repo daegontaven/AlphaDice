@@ -3,15 +3,17 @@ from code import InteractiveConsole
 
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot
 
-from widgets.console.interpreters.stream import NewLineIO
+from widgets.console.stream import NewLineIO
 
 
 class PythonInterpreter(QObject, InteractiveConsole):
     """
-    A reimplementation of the builtin InteractiveConsole to work with threads.
+    A reimplementation of the builtin InteractiveConsole to
+    work with threads.
     """
     output = pyqtSignal(str)
     signal_command = pyqtSignal(str)
+    multi_line = pyqtSignal(bool)
 
     def __init__(self):
         QObject.__init__(self)
@@ -22,11 +24,13 @@ class PythonInterpreter(QObject, InteractiveConsole):
         self.signal_command.connect(self.push_command)
 
     def write(self, string):
+        print("write()", file=sys.__stdout__)
         self.output.emit(string)
 
     def runcode(self, code):
         """
-        Overrides and captures stdout and stdin from InteractiveConsole.
+        Overrides and captures stdout and stdin from
+        InteractiveConsole.
         """
         sys.stdout = self.out
         sys.stderr = self.out
@@ -39,9 +43,11 @@ class PythonInterpreter(QObject, InteractiveConsole):
     @pyqtSlot(str)
     def push_command(self, command):
         """
-        :param command: line retrieved from console_input on returnPressed
+        :param command: line retrieved from console_input on
+                        returnPressed
         """
-        self.push(command)
+        result = self.push(command)
+        self.multi_line.emit(result)
 
     @pyqtSlot(str)
     def console(self, string):
