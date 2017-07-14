@@ -49,5 +49,21 @@ class PythonDisplay:
         self.interpreter.signal_command.emit(str(command))
 
     def send_console_log(self, command):
+        old_cursor = self.ui.console_log.textCursor()
+        old_scrollbar = self.ui.console_log.verticalScrollBar().value()
+        new_scrollbar = self.ui.console_log.verticalScrollBar().maximum()
+        if old_scrollbar == new_scrollbar:
+            scrolled = True
+        else:
+            scrolled = False
+
         self.ui.console_log.insertPlainText(command)
-        self.ui.console_log.moveCursor(QTextCursor.End)
+
+        if old_cursor.hasSelection() or not scrolled:
+            self.ui.console_log.setTextCursor(old_cursor)
+            self.ui.console_log.verticalScrollBar().setValue(old_scrollbar)
+        else:
+            self.ui.console_log.moveCursor(QTextCursor.End)
+            self.ui.console_log.verticalScrollBar().setValue(
+                self.ui.console_log.verticalScrollBar().maximum()
+            )

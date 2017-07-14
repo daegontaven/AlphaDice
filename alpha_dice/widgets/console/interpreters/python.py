@@ -24,7 +24,6 @@ class PythonInterpreter(QObject, InteractiveConsole):
         self.signal_command.connect(self.push_command)
 
     def write(self, string):
-        print("write()", file=sys.__stdout__)
         self.output.emit(string)
 
     def runcode(self, code):
