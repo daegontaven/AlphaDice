@@ -3,8 +3,6 @@ python:
   - "3.5"
   - "3.6"
 sudo: false
-before_install:
-  - git clone https://github.com/daegontaven/AlphaHooks
 install:
   - python setup.py install
 
