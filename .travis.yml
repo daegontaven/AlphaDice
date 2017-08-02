@@ -5,6 +5,6 @@ python:
 sudo: false
 install:
   - python setup.py install
-
 script:
-  - ls -la
+  - pip freeze | grep PyQt5
+  - pip freeze | grep QScintilla
