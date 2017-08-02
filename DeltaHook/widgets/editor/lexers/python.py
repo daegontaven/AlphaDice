@@ -5,6 +5,10 @@ from PyQt5.QtGui import QFontMetrics
 
 from DeltaHook.widgets.editor.lexers.config import LexerBase
 
+__author__ = "daegontaven"
+__copyright__ = "daegontaven"
+__license__ = "gpl3"
+
 
 class PythonLexer(LexerBase):
     """

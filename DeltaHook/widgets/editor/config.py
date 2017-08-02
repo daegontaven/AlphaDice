@@ -3,6 +3,10 @@ from PyQt5.QtGui import QFont
 
 from DeltaHook.widgets.editor.lexers import PythonLexer
 
+__author__ = "daegontaven"
+__copyright__ = "daegontaven"
+__license__ = "gpl3"
+
 
 class EditorProperty(QObject):
     """

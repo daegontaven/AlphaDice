@@ -6,6 +6,10 @@ from PyQt5.QtCore import QThread
 
 from DeltaHook.widgets.signals import PrimitiveSignals
 
+__author__ = "daegontaven"
+__copyright__ = "daegontaven"
+__license__ = "gpl3"
+
 
 class BufferQueue(QThread):
     """

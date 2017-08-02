@@ -1,5 +1,9 @@
 from PyQt5.QtCore import (pyqtSignal, QObject)
 
+__author__ = "daegontaven"
+__copyright__ = "daegontaven"
+__license__ = "gpl3"
+
 
 class PrimitiveSignals(QObject):
     """

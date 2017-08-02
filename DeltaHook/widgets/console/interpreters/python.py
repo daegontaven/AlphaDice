@@ -5,6 +5,10 @@ from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot
 
 from DeltaHook.widgets.console.stream import NewLineIO
 
+__author__ = "daegontaven"
+__copyright__ = "daegontaven"
+__license__ = "gpl3"
+
 
 class PythonInterpreter(QObject, InteractiveConsole):
     """

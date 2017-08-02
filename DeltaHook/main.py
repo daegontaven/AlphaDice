@@ -5,6 +5,10 @@ from PyQt5.QtWidgets import (QApplication)
 
 from DeltaHook.widgets.config import WidgetRunner
 
+__author__ = "daegontaven"
+__copyright__ = "daegontaven"
+__license__ = "gpl3"
+
 
 class MainWindow:
     """
@@ -17,7 +21,11 @@ class MainWindow:
 
         self.widgets = WidgetRunner(self.ui)
 
-if __name__ == "__main__":
+
+def main():
     app = QApplication(sys.argv)
     window = MainWindow()
     sys.exit(app.exec_())
+
+if __name__ == "__main__":
+    main()

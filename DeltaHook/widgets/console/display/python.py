@@ -3,6 +3,10 @@ from PyQt5.QtGui import QTextCursor
 
 from DeltaHook.widgets.console.interpreters import PythonInterpreter
 
+__author__ = "daegontaven"
+__copyright__ = "daegontaven"
+__license__ = "gpl3"
+
 
 class PythonDisplay:
     def __init__(self, ui, **kwargs):
