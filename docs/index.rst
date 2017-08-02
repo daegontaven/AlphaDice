@@ -1,8 +1,8 @@
 =========
-DeltaHook
+AlphaHooks
 =========
 
-This is the documentation of **DeltaHook**.
+This is the documentation of **AlphaHooks**.
 
 .. note::
 

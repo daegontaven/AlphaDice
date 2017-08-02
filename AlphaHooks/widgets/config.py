@@ -1,5 +1,5 @@
-from DeltaHook.widgets import EditorProperty
-from DeltaHook.widgets.console import ConsoleProperty
+from AlphaHooks.widgets import EditorProperty
+from AlphaHooks.widgets.console import ConsoleProperty
 
 
 class WidgetRunner:

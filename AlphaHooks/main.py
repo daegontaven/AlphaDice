@@ -3,7 +3,7 @@ import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import (QApplication)
 
-from DeltaHook.widgets.config import WidgetRunner
+from AlphaHooks.widgets.config import WidgetRunner
 
 __author__ = "daegontaven"
 __copyright__ = "daegontaven"

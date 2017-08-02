@@ -1,7 +1,7 @@
 from PyQt5.QtCore import QObject
 from PyQt5.QtGui import QFont
 
-from DeltaHook.widgets.editor.lexers import PythonLexer
+from AlphaHooks.widgets.editor.lexers import PythonLexer
 
 __author__ = "daegontaven"
 __copyright__ = "daegontaven"

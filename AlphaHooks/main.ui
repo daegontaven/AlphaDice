@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>DeltaHook</string>
+   <string>AlphaHooks</string>
   </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>

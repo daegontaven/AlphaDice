@@ -3,7 +3,7 @@ from code import InteractiveConsole
 
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot
 
-from DeltaHook.widgets.console.stream import NewLineIO
+from AlphaHooks.widgets.console.stream import NewLineIO
 
 __author__ = "daegontaven"
 __copyright__ = "daegontaven"

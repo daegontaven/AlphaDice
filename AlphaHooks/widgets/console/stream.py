@@ -4,7 +4,7 @@ from queue import Queue
 
 from PyQt5.QtCore import QThread
 
-from DeltaHook.widgets.signals import PrimitiveSignals
+from AlphaHooks.widgets.signals import PrimitiveSignals
 
 __author__ = "daegontaven"
 __copyright__ = "daegontaven"
