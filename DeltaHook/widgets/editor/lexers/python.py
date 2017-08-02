@@ -3,7 +3,7 @@ import builtins
 from PyQt5.Qsci import QsciScintilla, QsciLexerPython, QsciAPIs
 from PyQt5.QtGui import QFontMetrics
 
-from widgets.editor.lexers.config import LexerBase
+from DeltaHook.widgets.editor.lexers.config import LexerBase
 
 
 class PythonLexer(LexerBase):

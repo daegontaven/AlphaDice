@@ -4,7 +4,7 @@ from queue import Queue
 
 from PyQt5.QtCore import QThread
 
-from widgets.signals import PrimitiveSignals
+from DeltaHook.widgets.signals import PrimitiveSignals
 
 
 class BufferQueue(QThread):

@@ -1,6 +1,6 @@
 from PyQt5.QtGui import QTextOption
 
-from widgets.console.display import PythonDisplay
+from DeltaHook.widgets.console.display.python import PythonDisplay
 
 
 class ConsoleProperty:

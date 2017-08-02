@@ -3,7 +3,7 @@ from code import InteractiveConsole
 
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot
 
-from widgets.console.stream import NewLineIO
+from DeltaHook.widgets.console.stream import NewLineIO
 
 
 class PythonInterpreter(QObject, InteractiveConsole):

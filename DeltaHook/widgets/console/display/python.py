@@ -1,7 +1,7 @@
 from PyQt5.QtCore import QThread
 from PyQt5.QtGui import QTextCursor
 
-from widgets.console.interpreters import PythonInterpreter
+from DeltaHook.widgets.console.interpreters import PythonInterpreter
 
 
 class PythonDisplay:

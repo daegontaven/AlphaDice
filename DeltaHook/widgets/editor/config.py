@@ -1,7 +1,7 @@
 from PyQt5.QtCore import QObject
 from PyQt5.QtGui import QFont
 
-from widgets.editor.lexers import PythonLexer
+from DeltaHook.widgets.editor.lexers import PythonLexer
 
 
 class EditorProperty(QObject):

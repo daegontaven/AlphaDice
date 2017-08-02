@@ -1,5 +1,5 @@
-from widgets.console.config import ConsoleProperty
-from widgets.editor.config import EditorProperty
+from DeltaHook.widgets import EditorProperty
+from DeltaHook.widgets.console import ConsoleProperty
 
 
 class WidgetRunner:
