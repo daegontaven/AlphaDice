@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>AlphaDice</string>
+   <string>DeltaHook</string>
   </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
@@ -52,7 +52,7 @@
         <property name="movable">
          <bool>true</bool>
         </property>
-        <property name="tabBarAutoHide">
+        <property name="tabBarAutoHide" stdset="0">
          <bool>false</bool>
         </property>
         <widget class="QWidget" name="code_tab">
@@ -100,7 +100,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="console_input"/>
+               <widget class="QLineEdit" name="console_input">
+                <property name="frame">
+                 <bool>true</bool>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -120,7 +124,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
