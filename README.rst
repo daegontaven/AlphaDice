@@ -7,3 +7,6 @@ AlphaHooks
 
 .. image:: https://readthedocs.org/projects/alphahooks/badge/?version=latest
     :target: http://alphahooks.readthedocs.io/en/latest/?badge=latest
+
+.. image:: https://travis-ci.org/daegontaven/AlphaHooks.svg?branch=master
+    :target: https://travis-ci.org/daegontaven/AlphaHooks
