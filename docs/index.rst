@@ -1,6 +1,6 @@
-=========
+==========
 AlphaHooks
-=========
+==========
 
 This is the documentation of **AlphaHooks**.
 
@@ -16,9 +16,8 @@ Contents
    :maxdepth: 2
 
    License <license>
-   Authors <authors>
-   Changelog <changes>
-   Module Reference <api/modules>
+   Installation <installation>
+   Modules Reference <api/modules>
 
 
 Indices and tables

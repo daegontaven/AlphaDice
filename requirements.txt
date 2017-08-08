@@ -1,2 +1,3 @@
 PyQt5>=5.9
 qscintilla>=2.10.1
+Sphinx>=1.6.3
