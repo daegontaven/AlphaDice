@@ -28,6 +28,12 @@ class EditorProperty(QObject):
         self.font.setPointSize(10)
         self.ui.code_editor.setFont(self.font)
 
+        # Scrollbar
+        self.ui.code_editor.SendScintilla(
+            self.ui.code_editor.SCI_SETHSCROLLBAR,
+            0
+        )
+
         # Lexer
         self.lexer = PythonLexer(self.ui, self.font)
         self.lexer.lock()
