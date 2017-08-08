@@ -21,23 +21,22 @@ class BufferQueue(QThread):
     def __init__(self, output):
         super().__init__()
         self.output = output
-        self.queue = None
+        self.queue = Queue()
 
-    def update(self, queue):
+    def update(self, string):
         """
-        Copies DelayedBuffer.queue to the local namespace.
+        Populates self.queue with strings
 
-        :param queue: contains outputs from the stdout
-                      of an interpreter
+        :param string: string received from stdout
+
         """
-        self.queue = queue
+        self.queue.put(string)
 
     def run(self):
         while True:
-            if self.queue is not None:
-                while not self.queue.empty():
-                    self.output.signal_str.emit(self.queue.get())
-                    time.sleep(self.WRITE_DELAY)
+            while not self.queue.empty():
+                self.output.signal_str.emit(self.queue.get())
+                time.sleep(self.WRITE_DELAY)
 
 
 class DelayedBuffer:
@@ -52,13 +51,11 @@ class DelayedBuffer:
         :param output: used to access BaseSignals
         """
         self.output = output
-        self.queue = Queue()
         self.buffer = BufferQueue(self.output)
         self.buffer.start()
 
     def write(self, string):
-        self.queue.put(string)
-        self.buffer.update(self.queue)
+        self.buffer.update(string)
 
     def emit(self, string):
         """
