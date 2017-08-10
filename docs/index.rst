@@ -26,3 +26,12 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+.. raw:: html
+
+   <script>
+     ((window.gitter = {}).chat = {}).options = {
+       room: 'AlphaHooks/Lobby'
+     };
+   </script>
+   <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
