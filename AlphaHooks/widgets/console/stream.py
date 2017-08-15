@@ -4,7 +4,7 @@ from queue import Queue
 
 from PyQt5.QtCore import QThread
 
-from AlphaHooks.widgets.signals import PrimitiveSignals
+from AlphaHooks.widgets.signals import BaseSignals
 
 __author__ = "daegontaven"
 __copyright__ = "daegontaven"
@@ -49,7 +49,7 @@ class DelayedBuffer:
         """
         Starts the BufferQueue thread.
 
-        :param output: used to access PrimitiveSignals
+        :param output: used to access BaseSignals
         """
         self.output = output
         self.queue = Queue()
@@ -77,7 +77,7 @@ class NewLineIO(StringIO):
         refresh limitations.
         """
         StringIO.__init__(self, *args, **kwargs)
-        self.output = PrimitiveSignals()
+        self.output = BaseSignals()
         self.buffer = DelayedBuffer(self.output)
 
     def write(self, string):

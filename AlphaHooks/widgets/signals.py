@@ -5,7 +5,7 @@ __copyright__ = "daegontaven"
 __license__ = "gpl3"
 
 
-class PrimitiveSignals(QObject):
+class BaseSignals(QObject):
     """
     Standard set of pyqtSignals.
     """

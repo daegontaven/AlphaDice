@@ -42,6 +42,11 @@ class PythonDisplay:
         self.interpreter.multi_line.connect(self.prompt)
 
     def prompt(self, multi_line):
+        """
+
+        :param multi_line:
+        :
+        """
         if not multi_line:
             self.ui.console_prompt.setText(self.ps1)
         else:
@@ -50,7 +55,7 @@ class PythonDisplay:
     def send_console_input(self):
         command = self.ui.console_input.text()
         self.ui.console_input.clear()
-        self.interpreter.signal_command.emit(str(command))
+        self.interpreter.push_command.emit(str(command))
 
     def send_console_log(self, command):
         old_cursor = self.ui.console_log.textCursor()

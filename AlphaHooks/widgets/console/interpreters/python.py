@@ -16,16 +16,16 @@ class PythonInterpreter(QObject, InteractiveConsole):
     work with threads.
     """
     output = pyqtSignal(str)
-    signal_command = pyqtSignal(str)
+    push_command = pyqtSignal(str)
     multi_line = pyqtSignal(bool)
 
     def __init__(self):
         QObject.__init__(self)
         self.l = {}
         InteractiveConsole.__init__(self, self.l)
-        self.out = NewLineIO()
-        self.out.output.signal_str.connect(self.console)
-        self.signal_command.connect(self.push_command)
+        self.stream = NewLineIO()
+        self.stream.output.signal_str.connect(self.console)
+        self.push_command.connect(self.command)
 
     def write(self, string):
         self.output.emit(string)
@@ -35,8 +35,8 @@ class PythonInterpreter(QObject, InteractiveConsole):
         Overrides and captures stdout and stdin from
         InteractiveConsole.
         """
-        sys.stdout = self.out
-        sys.stderr = self.out
+        sys.stdout = self.stream
+        sys.stderr = self.stream
         sys.excepthook = sys.__excepthook__
         result = InteractiveConsole.runcode(self, code)
         sys.stdout = sys.__stdout__
@@ -44,7 +44,7 @@ class PythonInterpreter(QObject, InteractiveConsole):
         return result
 
     @pyqtSlot(str)
-    def push_command(self, command):
+    def command(self, command):
         """
         :param command: line retrieved from console_input on
                         returnPressed
