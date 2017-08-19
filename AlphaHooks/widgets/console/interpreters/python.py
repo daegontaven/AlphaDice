@@ -3,7 +3,7 @@ from code import InteractiveConsole
 
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot
 
-from AlphaHooks.widgets.console.stream import NewLineIO
+from AlphaHooks.widgets.console.stream import ConsoleStream
 
 __author__ = "daegontaven"
 __copyright__ = "daegontaven"
@@ -23,7 +23,7 @@ class PythonInterpreter(QObject, InteractiveConsole):
         QObject.__init__(self)
         self.l = {}
         InteractiveConsole.__init__(self, self.l)
-        self.stream = NewLineIO()
+        self.stream = ConsoleStream()
         self.stream.output.signal_str.connect(self.console)
         self.push_command.connect(self.command)
 

@@ -1,6 +1,5 @@
-import time
 from io import StringIO
-from queue import Queue
+from queue import Queue, Empty
 
 from PyQt5.QtCore import QThread
 
@@ -11,51 +10,31 @@ __copyright__ = "daegontaven"
 __license__ = "gpl3"
 
 
-class BufferQueue(QThread):
-    """
-    Thread used to get strings from DelayedBuffer.queue and
-    emit them as signals in constant intervals.
-    """
-    WRITE_DELAY = 0.005
-
-    def __init__(self, output):
-        super().__init__()
-        self.output = output
-        self.queue = Queue()
-
-    def update(self, string):
-        """
-        Populates self.queue with strings
-
-        :param string: string received from stdout
-
-        """
-        self.queue.put(string)
-
-    def run(self):
-        while True:
-            while not self.queue.empty():
-                self.output.signal_str.emit(self.queue.get())
-                time.sleep(self.WRITE_DELAY)
-
-
-class DelayedBuffer:
+class DelayedBuffer(QThread):
     """
     A buffer that uses a queue to store strings. It removes the
     first appended string first in a constant interval.
     """
-    def __init__(self, output):
+    def __init__(self, output, delay):
         """
-        Starts the BufferQueue thread.
-
         :param output: used to access BaseSignals
+        :param delay: delay for emitting
         """
+        super().__init__()
         self.output = output
-        self.buffer = BufferQueue(self.output)
-        self.buffer.start()
+        self.delay = delay
+        self.queue = Queue()
 
     def write(self, string):
-        self.buffer.update(string)
+        self.queue.put(string)
+
+    def run(self):
+        while True:
+            try:
+                data = self.queue.get(block=False)
+                self.output.signal_str.emit(data)
+            except Empty:
+                pass
 
     def emit(self, string):
         """
@@ -64,7 +43,7 @@ class DelayedBuffer:
         self.output.signal_str.emit(string)
 
 
-class NewLineIO(StringIO):
+class ConsoleStream(StringIO):
     """
     Custom StreamIO class that emits a signal on each write.
     """
@@ -75,7 +54,8 @@ class NewLineIO(StringIO):
         """
         StringIO.__init__(self, *args, **kwargs)
         self.output = BaseSignals()
-        self.buffer = DelayedBuffer(self.output)
+        self.buffer = DelayedBuffer(self.output, delay=0.05)
+        self.buffer.start()
 
     def write(self, string):
         """
