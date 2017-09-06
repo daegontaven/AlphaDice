@@ -1,5 +1,4 @@
 from PyQt5.QtCore import QThread
-from PyQt5.QtGui import QTextCursor
 
 from AlphaHooks.widgets.console.interpreters import PythonInterpreter
 
@@ -43,9 +42,10 @@ class PythonDisplay:
 
     def prompt(self, multi_line):
         """
+        Checks and displays the current prompt in console_prompt.
 
-        :param multi_line:
-        :
+        :param multi_line: Can be True or False for the
+                           defined prompts
         """
         if not multi_line:
             self.ui.console_prompt.setText(self.ps1)
@@ -53,26 +53,20 @@ class PythonDisplay:
             self.ui.console_prompt.setText(self.ps2)
 
     def send_console_input(self):
+        """
+        Push the input to the interpreter where it is run.
+        """
         command = self.ui.console_input.text()
         self.ui.console_input.clear()
         self.interpreter.push_command.emit(str(command))
 
-    def send_console_log(self, command):
-        old_cursor = self.ui.console_log.textCursor()
-        old_scrollbar = self.ui.console_log.verticalScrollBar().value()
-        new_scrollbar = self.ui.console_log.verticalScrollBar().maximum()
-        if old_scrollbar == new_scrollbar:
-            scrolled = True
-        else:
-            scrolled = False
+    def send_console_log(self, output):
+        """
+        Insert the output into console_log and automatically scroll the
+        scrollbar.
 
-        self.ui.console_log.insertPlainText(command)
-
-        if old_cursor.hasSelection() or not scrolled:
-            self.ui.console_log.setTextCursor(old_cursor)
-            self.ui.console_log.verticalScrollBar().setValue(old_scrollbar)
-        else:
-            self.ui.console_log.moveCursor(QTextCursor.End)
-            self.ui.console_log.verticalScrollBar().setValue(
-                self.ui.console_log.verticalScrollBar().maximum()
-            )
+        :param output: output from the interpreter
+        """
+        self.ui.console_log.insertPlainText(output)
+        scrollbar = self.ui.console_log.verticalScrollBar()
+        scrollbar.setValue(scrollbar.maximum())

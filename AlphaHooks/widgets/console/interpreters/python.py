@@ -21,13 +21,16 @@ class PythonInterpreter(QObject, InteractiveConsole):
 
     def __init__(self):
         QObject.__init__(self)
-        self.l = {}
-        InteractiveConsole.__init__(self, self.l)
+        self.locals = {}
+        InteractiveConsole.__init__(self, self.locals)
         self.stream = ConsoleStream()
-        self.stream.output.signal_str.connect(self.console)
+        self.stream.written.connect(self.console)
         self.push_command.connect(self.command)
 
     def write(self, string):
+        """
+        Override and signal to write directly to console_log.
+        """
         self.output.emit(string)
 
     def runcode(self, code):
@@ -46,6 +49,8 @@ class PythonInterpreter(QObject, InteractiveConsole):
     @pyqtSlot(str)
     def command(self, command):
         """
+        Get line of code to be run and signal if more lines needed.
+
         :param command: line retrieved from console_input on
                         returnPressed
         """
@@ -55,6 +60,8 @@ class PythonInterpreter(QObject, InteractiveConsole):
     @pyqtSlot(str)
     def console(self, string):
         """
+        Signals to write the given string to console_log.
+
         :param string: processed output from a stream
         """
         self.output.emit(string)
