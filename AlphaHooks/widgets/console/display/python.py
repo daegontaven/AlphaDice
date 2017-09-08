@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QThread
+from PyQt5.QtCore import QThread, QObject
 
 from AlphaHooks.widgets.console.interpreters import PythonInterpreter
 
@@ -7,8 +7,8 @@ __copyright__ = "daegontaven"
 __license__ = "gpl3"
 
 
-class PythonDisplay:
-    def __init__(self, ui, **kwargs):
+class PythonDisplay(QObject):
+    def __init__(self, ui, parent=None, *args, **kwargs):
         """
         Loads python configurations for console_log. A new thread is
         spawned to which the interpreter is moved. This is done to
@@ -16,6 +16,7 @@ class PythonDisplay:
 
         :param ui: used to access 'main.ui' methods
         """
+        super(PythonDisplay, self).__init__(parent, *args)
         self.ui = ui
 
         # Prompts

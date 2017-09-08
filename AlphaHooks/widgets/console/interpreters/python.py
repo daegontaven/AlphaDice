@@ -19,11 +19,11 @@ class PythonInterpreter(QObject, InteractiveConsole):
     push_command = pyqtSignal(str)
     multi_line = pyqtSignal(bool)
 
-    def __init__(self):
-        QObject.__init__(self)
+    def __init__(self, *args, **kwargs):
+        super(PythonInterpreter, self).__init__(*args, **kwargs)
         self.locals = {}
         InteractiveConsole.__init__(self, self.locals)
-        self.stream = ConsoleStream()
+        self.stream = ConsoleStream(self)
         self.stream.written.connect(self.console)
         self.push_command.connect(self.command)
 
@@ -65,3 +65,4 @@ class PythonInterpreter(QObject, InteractiveConsole):
         :param string: processed output from a stream
         """
         self.output.emit(string)
+        print(string, file=sys.__stdout__)

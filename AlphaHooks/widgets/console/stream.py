@@ -11,6 +11,9 @@ class ConsoleStream(QObject):
     """
     written = pyqtSignal(str)
 
+    def __init__(self, *args, **kwargs):
+        super(ConsoleStream, self).__init__(*args, **kwargs)
+
     def write(self, string):
         """
         Overrides the parent write method and emits a signal
