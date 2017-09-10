@@ -38,7 +38,7 @@ class PythonDisplay(QObject):
 
         # Slots
         self.ui.console_input.returnPressed.connect(self.send_console_input)
-        self.interpreter.output.connect(self.send_console_log)
+        self.interpreter.stream.written.connect(self.send_console_log)
         self.interpreter.multi_line.connect(self.prompt)
 
     def prompt(self, multi_line):

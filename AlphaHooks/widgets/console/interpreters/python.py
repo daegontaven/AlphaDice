@@ -15,7 +15,6 @@ class PythonInterpreter(QObject, InteractiveConsole):
     A reimplementation of the builtin InteractiveConsole to
     work with threads.
     """
-    output = pyqtSignal(str)
     push_command = pyqtSignal(str)
     multi_line = pyqtSignal(bool)
 
@@ -23,8 +22,7 @@ class PythonInterpreter(QObject, InteractiveConsole):
         super(PythonInterpreter, self).__init__(*args, **kwargs)
         self.locals = {}
         InteractiveConsole.__init__(self, self.locals)
-        self.stream = ConsoleStream(self)
-        self.stream.written.connect(self.console)
+        self.stream = ConsoleStream(buffer=True)
         self.push_command.connect(self.command)
 
     def write(self, string):
@@ -56,13 +54,3 @@ class PythonInterpreter(QObject, InteractiveConsole):
         """
         result = self.push(command)
         self.multi_line.emit(result)
-
-    @pyqtSlot(str)
-    def console(self, string):
-        """
-        Signals to write the given string to console_log.
-
-        :param string: processed output from a stream
-        """
-        self.output.emit(string)
-        print(string, file=sys.__stdout__)
