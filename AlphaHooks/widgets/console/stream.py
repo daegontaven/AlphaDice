@@ -40,7 +40,7 @@ class ConsoleStream(QObject):
 
     def get(self):
         """
-        Tris to get and emit string from the buffer
+        Tries to get and emit string from the buffer
         if it's available.
         """
         try:
