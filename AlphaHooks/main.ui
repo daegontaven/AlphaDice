@@ -23,98 +23,103 @@
    <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="central_widget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QVBoxLayout" name="visual_layout"/>
-    </item>
-    <item>
-     <layout class="QVBoxLayout" name="io_layout">
-      <item>
-       <widget class="QTabWidget" name="tab_widget">
-        <property name="tabPosition">
-         <enum>QTabWidget::North</enum>
+     <widget class="QSplitter" name="main_splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QTreeWidget" name="library_browser">
+       <column>
+        <property name="text">
+         <string>Library Browser</string>
         </property>
-        <property name="tabShape">
-         <enum>QTabWidget::Rounded</enum>
-        </property>
-        <property name="currentIndex">
-         <number>1</number>
-        </property>
-        <property name="elideMode">
-         <enum>Qt::ElideNone</enum>
-        </property>
-        <property name="documentMode">
-         <bool>false</bool>
-        </property>
-        <property name="tabsClosable">
-         <bool>false</bool>
-        </property>
-        <property name="movable">
-         <bool>true</bool>
-        </property>
-        <property name="tabBarAutoHide" stdset="0">
-         <bool>false</bool>
-        </property>
-        <widget class="QWidget" name="code_tab">
-         <attribute name="title">
-          <string>Code</string>
-         </attribute>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <layout class="QVBoxLayout" name="code_layout">
-            <item>
-             <widget class="QsciScintilla" name="code_editor">
-              <property name="toolTip">
-               <string/>
-              </property>
-              <property name="whatsThis">
-               <string/>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="console_tab">
-         <attribute name="title">
-          <string>Console</string>
-         </attribute>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <layout class="QVBoxLayout" name="console_layout">
-            <item>
-             <widget class="QPlainTextEdit" name="console_log">
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
-              <item>
-               <widget class="QLabel" name="console_prompt">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="console_input">
-                <property name="frame">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
+       </column>
+      </widget>
+      <widget class="QTabWidget" name="main_tab_widget">
+       <property name="tabPosition">
+        <enum>QTabWidget::North</enum>
+       </property>
+       <property name="tabShape">
+        <enum>QTabWidget::Rounded</enum>
+       </property>
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <property name="elideMode">
+        <enum>Qt::ElideNone</enum>
+       </property>
+       <property name="documentMode">
+        <bool>false</bool>
+       </property>
+       <property name="tabsClosable">
+        <bool>false</bool>
+       </property>
+       <property name="movable">
+        <bool>true</bool>
+       </property>
+       <property name="tabBarAutoHide">
+        <bool>false</bool>
+       </property>
+       <widget class="QWidget" name="code_tab">
+        <attribute name="title">
+         <string>Code</string>
+        </attribute>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <layout class="QVBoxLayout" name="code_layout">
+           <item>
+            <widget class="QsciScintilla" name="code_editor">
+             <property name="toolTip">
+              <string/>
+             </property>
+             <property name="whatsThis">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </widget>
-      </item>
-     </layout>
+       <widget class="QWidget" name="console_tab">
+        <attribute name="title">
+         <string>Console</string>
+        </attribute>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <layout class="QVBoxLayout" name="console_layout">
+           <item>
+            <widget class="QPlainTextEdit" name="console_log">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="prompt_layout">
+             <item>
+              <widget class="QLabel" name="console_prompt">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="console_input">
+               <property name="frame">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -124,7 +129,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
