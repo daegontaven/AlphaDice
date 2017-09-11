@@ -30,6 +30,10 @@ class PythonDisplay(QObject):
                 self.ps2 = val
         self.ui.console_prompt.setText(self.ps1)
 
+        # Widgets
+        self.cursor = self.ui.console_log.textCursor()
+        self.scrollbar = self.ui.console_log.verticalScrollBar()
+
         # Threads
         self.thread = QThread()
         self.thread.start()
@@ -71,13 +75,11 @@ class PythonDisplay(QObject):
         :param output: output from the interpreter
         """
         # Move cursor
-        cursor = self.ui.console_log.textCursor()
-        cursor.movePosition(QTextCursor.End)
-        self.ui.console_log.setTextCursor(cursor)
+        self.cursor.movePosition(QTextCursor.End)
+        self.ui.console_log.setTextCursor(self.cursor)
 
         # Insert Text
         self.ui.console_log.insertPlainText(output)
 
         # Move scrollbar
-        scrollbar = self.ui.console_log.verticalScrollBar()
-        scrollbar.setValue(scrollbar.maximum())
+        self.scrollbar.setValue(self.scrollbar.maximum())
