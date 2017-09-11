@@ -17,6 +17,7 @@ class PythonInterpreter(QObject, InteractiveConsole):
     """
     push_command = pyqtSignal(str)
     multi_line = pyqtSignal(bool)
+    error = pyqtSignal(str)
 
     def __init__(self, *args, **kwargs):
         super(PythonInterpreter, self).__init__(*args, **kwargs)
@@ -28,8 +29,9 @@ class PythonInterpreter(QObject, InteractiveConsole):
     def write(self, string):
         """
         Override and signal to write directly to console_log.
+        Usually used to emit that a traceback happened.
         """
-        self.output.emit(string)
+        self.error.emit(string)
 
     def runcode(self, code):
         """
