@@ -1,4 +1,5 @@
 from PyQt5.QtCore import QThread, QObject
+from PyQt5.QtGui import QTextCursor
 
 from AlphaHooks.widgets.console.interpreters import PythonInterpreter
 
@@ -68,6 +69,14 @@ class PythonDisplay(QObject):
 
         :param output: output from the interpreter
         """
+        # Move cursor
+        cursor = self.ui.console_log.textCursor()
+        cursor.movePosition(QTextCursor.End)
+        self.ui.console_log.setTextCursor(cursor)
+
+        # Insert Text
         self.ui.console_log.insertPlainText(output)
+
+        # Move scrollbar
         scrollbar = self.ui.console_log.verticalScrollBar()
         scrollbar.setValue(scrollbar.maximum())
