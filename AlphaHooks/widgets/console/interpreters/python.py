@@ -19,11 +19,11 @@ class PythonInterpreter(QObject, InteractiveConsole):
     multi_line = pyqtSignal(bool)
     error = pyqtSignal(str)
 
-    def __init__(self, *args, **kwargs):
-        super(PythonInterpreter, self).__init__(*args, **kwargs)
+    def __init__(self, parent=None):
+        super(PythonInterpreter, self).__init__(parent)
         self.locals = {}
         InteractiveConsole.__init__(self, self.locals)
-        self.stream = ConsoleStream(buffer=True)
+        self.stream = ConsoleStream(self, buffer=True)
         self.push_command.connect(self.command)
 
     def write(self, string):

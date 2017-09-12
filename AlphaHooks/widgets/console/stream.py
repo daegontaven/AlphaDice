@@ -1,4 +1,4 @@
-from queue import Queue, Empty
+from queue import Queue, Empty, Full
 
 from PyQt5.QtCore import QObject, pyqtSignal, QTimer
 
@@ -14,15 +14,18 @@ class ConsoleStream(QObject):
     """
     written = pyqtSignal(str)
 
-    def __init__(self, buffer=False, *args, **kwargs):
-        super(ConsoleStream, self).__init__(*args, **kwargs)
+    def __init__(self, parent=None, buffer=False):
+        super(ConsoleStream, self).__init__(parent)
         self.buffer = buffer
 
         if buffer:
-            self.buffer = Queue()
-            self.timer = QTimer(self)
-            self.timer.timeout.connect(self.get)
-            self.timer.start(0)  # process all events before timeout
+            self.buffer = Queue(500)
+
+        # SingleShot Flush
+        self.timer = QTimer(self)
+        self.timer.setInterval(100)
+        self.timer.setSingleShot(True)
+        self.timer.timeout.connect(self.process)
 
     def write(self, string):
         """
@@ -34,7 +37,15 @@ class ConsoleStream(QObject):
         :param string: single write output from stdout
         """
         if self.buffer:
-            self.buffer.put(string)
+            if self.buffer.empty():
+                self.timer.start()
+            try:
+                self.buffer.put(string, block=False)
+                self.timer.start()
+            except Full:
+                self.flush()
+                self.timer.stop()
+                self.write(string)
         else:
             self.written.emit(string)
 
@@ -48,3 +59,28 @@ class ConsoleStream(QObject):
             self.written.emit(string)
         except Empty:
             pass
+
+    def process(self):
+        """
+        Determines when to flush the buffer.
+        """
+        if self.buffer.not_empty:
+            self.flush()
+            self.timer.stop()
+        elif self.buffer.empty():
+            self.timer.stop()
+
+    def flush(self):
+        """
+        Flushes the buffer.
+        """
+        lines = []
+        for line in range(self.buffer.qsize()):
+            try:
+                line = self.buffer.get(block=False)
+                lines.append(line)
+                continue
+            except Empty:
+                break
+        if lines:
+            self.written.emit(''.join(lines))

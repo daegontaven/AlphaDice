@@ -18,7 +18,7 @@ class ConsoleProperty:
         self.ui = ui
 
         # Document
-        self.ui.console_log.document().setMaximumBlockCount(1000)
+        self.ui.console_log.document().setMaximumBlockCount(500)
         self.ui.console_log.setWordWrapMode(QTextOption.WrapAnywhere)
 
         # Display

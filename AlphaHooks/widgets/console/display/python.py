@@ -78,7 +78,7 @@ class PythonDisplay(QObject):
         self.cursor.movePosition(QTextCursor.End)
         self.ui.console_log.setTextCursor(self.cursor)
 
-        # Insert Text
+        # Insert text
         self.ui.console_log.insertPlainText(output)
 
         # Move scrollbar
