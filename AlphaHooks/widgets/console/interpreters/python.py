@@ -3,7 +3,7 @@ from code import InteractiveConsole
 
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot
 
-from AlphaHooks.widgets.console.stream import ConsoleStream
+from AlphaHooks.widgets.console.io import Stream, StringBuffer
 
 __author__ = "daegontaven"
 __copyright__ = "daegontaven"
@@ -14,6 +14,12 @@ class PythonInterpreter(QObject, InteractiveConsole):
     """
     A reimplementation of the builtin InteractiveConsole to
     work with threads.
+
+    :signal push_command: receive commands from console_input
+    :signal multi_line: signal whether more lines are needed by the
+                        interpreter
+    :signal error: send stderr immediately to console_log if an error
+                   occurs.
     """
     push_command = pyqtSignal(str)
     multi_line = pyqtSignal(bool)
@@ -23,7 +29,13 @@ class PythonInterpreter(QObject, InteractiveConsole):
         super(PythonInterpreter, self).__init__(parent)
         self.locals = {}
         InteractiveConsole.__init__(self, self.locals)
-        self.stream = ConsoleStream(self, buffer=True)
+
+        # Stream
+        self.stream = Stream(self)
+        self.stream_buffer = StringBuffer(delay=0.10)
+
+        # Slots
+        self.stream.written.connect(self.stream_buffer.consume)
         self.push_command.connect(self.command)
 
     def write(self, string):
