@@ -10,3 +10,7 @@ AlphaHooks
 
 .. image:: https://travis-ci.org/daegontaven/AlphaHooks.svg?branch=master
     :target: https://travis-ci.org/daegontaven/AlphaHooks
+
+**Warning! This software is in it's planning stage. It is under active development and very experimental. Use at your own risk.**
+
+AlphaHooks is an Integrated Library Environment(ILE), the first of it's kind. It is mean to act as an interactive bridge between libraries written in different programming languages.
