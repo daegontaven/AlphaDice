@@ -12,7 +12,7 @@ class LexerBase:
     def __init__(self, ui, font):
         """
         :param ui: used to access 'main.ui' methods
-        :param font: set in EditorProperty
+        :param font: settings in EditorProperty
         """
         self.ui = ui
         self.font = font

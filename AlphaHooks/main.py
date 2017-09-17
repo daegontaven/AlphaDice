@@ -3,7 +3,7 @@ import sys
 from PyQt5.QtWidgets import (QApplication, QMainWindow)
 
 from AlphaHooks.widgets.config import WidgetRunner
-from AlphaHooks.windows import MainInterface
+from AlphaHooks.windows.config import MainInterface
 
 __author__ = "daegontaven"
 __copyright__ = "daegontaven"

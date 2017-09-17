@@ -1,11 +1,18 @@
 from PyQt5 import QtCore, QtWidgets, Qsci
 
+from windows.settings.config import SettingsDialog
+
 
 class MainInterface(object):
     def __init__(self, main_window):
+
+        # Main Window
         main_window.setObjectName("main_window")
         main_window.resize(800, 600)
-        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        size_policy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred,
+            QtWidgets.QSizePolicy.Preferred
+        )
         size_policy.setHorizontalStretch(0)
         size_policy.setVerticalStretch(0)
         size_policy.setHeightForWidth(main_window.sizePolicy().hasHeightForWidth())
@@ -94,6 +101,16 @@ class MainInterface(object):
         self.menu_bar.setGeometry(QtCore.QRect(0, 0, 800, 25))
         self.menu_bar.setObjectName("menu_bar")
         main_window.setMenuBar(self.menu_bar)
+
+        # Menu Bar -> File
+        self.file_menu = self.menu_bar.addMenu('File')
+
+        # Menu Bar -> File -> Settings
+        self.settings_dialog = SettingsDialog()
+        self.settings_action = QtWidgets.QAction('Settings...')
+        self.settings_action.setShortcut('Ctrl+Alt+S')
+        self.file_menu.addAction(self.settings_action)
+        self.settings_action.triggered.connect(self.settings_dialog.show)
 
         # Status Bar
         self.status_bar = QtWidgets.QStatusBar(main_window)
