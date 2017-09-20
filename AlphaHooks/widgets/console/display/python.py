@@ -9,16 +9,18 @@ __license__ = "gpl3"
 
 
 class PythonDisplay(QObject):
-    def __init__(self, ui, parent=None, **kwargs):
+    def __init__(self, ui, config, parent=None, **kwargs):
         """
         Loads python configurations for console_log. A new thread is
         spawned to which the interpreter is moved. This is done to
         increase the responsiveness of the main user interface.
 
         :param ui: used to access 'main.ui' methods
+        :param config: used to configure classes
         """
         super(PythonDisplay, self).__init__(parent)
         self.ui = ui
+        self.config = config
 
         # Prompts
         self.ps1 = '>>>'
@@ -38,7 +40,7 @@ class PythonDisplay(QObject):
         self.thread = QThread()
         self.thread.start()
 
-        self.interpreter = PythonInterpreter()
+        self.interpreter = PythonInterpreter(self.config)
         self.interpreter.moveToThread(self.thread)
 
         # Slots

@@ -25,14 +25,17 @@ class PythonInterpreter(QObject, InteractiveConsole):
     multi_line = pyqtSignal(bool)
     error = pyqtSignal(str)
 
-    def __init__(self, parent=None):
+    def __init__(self, config, parent=None):
         super(PythonInterpreter, self).__init__(parent)
+        self.config = config
         self.locals = {}
         InteractiveConsole.__init__(self, self.locals)
 
         # Stream
         self.stream = Stream(self)
-        self.stream_buffer = StringBuffer(delay=0.10)
+        self.stream_buffer = StringBuffer(
+            delay=config["Console"]["Write Delay"]
+        )
 
         # Slots
         self.stream.written.connect(self.stream_buffer.consume)
