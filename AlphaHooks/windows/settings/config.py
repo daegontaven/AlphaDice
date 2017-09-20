@@ -1,7 +1,5 @@
-import sys
-
 from PyQt5.QtWidgets import (QWidget, QHBoxLayout, QVBoxLayout, QTreeWidget,
-                             QApplication, QStackedWidget)
+                             QStackedWidget)
 
 from widgets.collections import Populate
 from windows.settings.root import ConsoleSettings
@@ -61,10 +59,3 @@ class SettingsDialog(QWidget):
             self.stack.setCurrentIndex(item_connection)
         except ValueError as _:
             pass
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = SettingsDialog()
-    window.show()
-    sys.exit(app.exec_())
