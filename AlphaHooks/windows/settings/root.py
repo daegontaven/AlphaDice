@@ -20,6 +20,11 @@ class ConsoleSettings(QWidget):
 
         self.scrollback_buffer = QLabel("ScrollBack Buffer")
         self.scrollback_buffer_edit = QSpinBox()
+        self.scrollback_buffer_edit.setRange(50, 1000000)
+        self.scrollback_buffer_edit.setSuffix(" lines")
+        self.scrollback_buffer_edit.setValue(
+            self.config["Console"]["Scrollback Buffer"]
+        )
 
         # Layout
         self.grid_layout = QGridLayout()
