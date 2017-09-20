@@ -20,7 +20,13 @@ class MainWindow(QMainWindow):
 
         self.config = json_config.connect("settings.json")
         self.ui = MainInterface(self, self.config)
-        self.widgets = WidgetRunner(self.ui, self.config)
+        self.widgets = WidgetRunner(self.ui, self.config, self)
+
+    def closeEvent(self, event):
+        """
+        Finish up any tasks.
+        """
+        self.widgets.stop()
 
 
 def main():

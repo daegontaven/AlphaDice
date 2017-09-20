@@ -12,13 +12,14 @@ class EditorProperty(QObject):
     """
     Provides access to methods of code_editor.
     """
-    def __init__(self, ui):
+    def __init__(self, ui, parent=None):
         """
         Loads default configuration for code_editor including
         the lexer.
 
         :param ui: used to access 'main.ui' methods
         """
+        super(EditorProperty, self).__init__(parent)
         self.ui = ui
 
         # Fonts

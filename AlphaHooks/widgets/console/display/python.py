@@ -85,3 +85,7 @@ class PythonDisplay(QObject):
 
         # Move scrollbar
         self.scrollbar.setValue(self.scrollbar.maximum())
+
+    def stop_thread(self):
+        self.thread.quit()
+        self.thread.wait()
