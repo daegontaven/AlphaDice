@@ -12,6 +12,11 @@ class ConsoleSettings(QWidget):
         # Widgets
         self.write_latency = QLabel("Write Latency")
         self.write_latency_edit = QSpinBox()
+        self.write_latency_edit.setRange(50, 500)
+        self.write_latency_edit.setSuffix(" ms")
+        self.write_latency_edit.setValue(
+            self.config["Console"]["Write Delay"]
+        )
 
         self.scrollback_buffer = QLabel("ScrollBack Buffer")
         self.scrollback_buffer_edit = QSpinBox()
@@ -27,3 +32,9 @@ class ConsoleSettings(QWidget):
         self.grid_layout.addWidget(self.scrollback_buffer_edit, 2, 1)
 
         self.setLayout(self.grid_layout)
+
+        # Slots
+        self.write_latency_edit.valueChanged.connect(
+            lambda value: self.config["Console"].__setitem__(
+                "Write Delay", value)
+        )

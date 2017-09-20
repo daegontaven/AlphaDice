@@ -1,0 +1,6 @@
+{
+  "Console": {
+    "Scrollback Buffer": 500,
+    "Write Delay": 100
+  }
+}

@@ -15,10 +15,10 @@ class StringBuffer(QObject):
     """
     output = pyqtSignal(str)
 
-    def __init__(self, parent=None, delay=0.050):
+    def __init__(self, parent=None, delay=50):
         super(StringBuffer, self).__init__(parent)
-        self.delay = delay
-        self.last_time = time.monotonic() - delay
+        self.delay = delay / 1000
+        self.last_time = time.monotonic() - self.delay
         self.buffer = []
 
         # Timer
