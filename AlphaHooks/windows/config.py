@@ -4,7 +4,8 @@ from windows.settings.config import SettingsDialog
 
 
 class MainInterface(object):
-    def __init__(self, main_window):
+    def __init__(self, main_window, config):
+        self.config = config
 
         # Main Window
         main_window.setObjectName("main_window")
@@ -106,7 +107,7 @@ class MainInterface(object):
         self.file_menu = self.menu_bar.addMenu('File')
 
         # Menu Bar -> File -> Settings
-        self.settings_dialog = SettingsDialog()
+        self.settings_dialog = SettingsDialog(config)
         self.settings_action = QtWidgets.QAction('Settings...')
         self.settings_action.setShortcut('Ctrl+Alt+S')
         self.file_menu.addAction(self.settings_action)

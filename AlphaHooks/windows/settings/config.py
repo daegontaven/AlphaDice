@@ -11,11 +11,12 @@ class SettingsDialog(QWidget):
     """
     Settings dialog opened from File -> Settings...
     """
-    def __init__(self, parent=None):
+    def __init__(self, config, parent=None):
         super(SettingsDialog, self).__init__(parent)
+        self.config = config
 
         # Widgets
-        self.console = ConsoleSettings()
+        self.console = ConsoleSettings(self.config)
 
         # Settings
         self.widget_connections = {

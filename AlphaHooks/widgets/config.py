@@ -1,5 +1,3 @@
-import json_config
-
 from AlphaHooks.widgets import EditorProperty
 from AlphaHooks.widgets.console import ConsoleProperty
 
@@ -8,9 +6,9 @@ class WidgetRunner:
     """
     Loads default configurations of each widget.
     """
-    def __init__(self, ui):
+    def __init__(self, ui, config):
         self.ui = ui
-        self.config = json_config.connect("settings.json")
+        self.config = config
 
         # Load Properties
         self.editor = EditorProperty(self.ui)

@@ -5,8 +5,9 @@ class ConsoleSettings(QWidget):
     """
     Input widgets to configure the Console
     """
-    def __init__(self, parent=None):
+    def __init__(self, config, parent=None):
         super(ConsoleSettings, self).__init__(parent)
+        self.config = config
 
         # Widgets
         self.write_latency = QLabel("Write Latency")

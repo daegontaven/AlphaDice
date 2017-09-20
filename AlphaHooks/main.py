@@ -1,5 +1,6 @@
 import sys
 
+import json_config
 from PyQt5.QtWidgets import (QApplication, QMainWindow)
 
 from AlphaHooks.widgets.config import WidgetRunner
@@ -17,8 +18,9 @@ class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
 
-        self.ui = MainInterface(self)
-        self.widgets = WidgetRunner(self.ui)
+        self.config = json_config.connect("settings.json")
+        self.ui = MainInterface(self, self.config)
+        self.widgets = WidgetRunner(self.ui, self.config)
 
 
 def main():
