@@ -41,3 +41,4 @@ docs/_build/*
 cover/*
 MANIFEST
 /AlphaHooks/data/
+/AlphaHooks/resources.qrc

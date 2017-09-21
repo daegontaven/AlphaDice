@@ -4,6 +4,7 @@ import sys
 import json_config
 from PyQt5.QtWidgets import (QApplication, QMainWindow)
 
+import resources
 from AlphaHooks.widgets.config import WidgetRunner
 from AlphaHooks.windows.config import MainInterface
 
@@ -21,6 +22,7 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         QMainWindow.__init__(self)
+        self.resources = resources
 
         if not os.path.isdir(self.DATA_PATH):
             os.mkdir(self.DATA_PATH)

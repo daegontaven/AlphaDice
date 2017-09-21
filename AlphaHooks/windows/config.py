@@ -1,11 +1,14 @@
 from PyQt5 import QtCore, QtWidgets, Qsci
-from PyQt5.QtWidgets import QComboBox, QWidget, QSizePolicy
+from PyQt5.QtCore import QObject, QEvent
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QComboBox, QWidget, QSizePolicy, QPushButton
 
 from windows.settings.config import SettingsDialog
 
 
-class MainInterface(object):
+class MainInterface(QObject):
     def __init__(self, main_window, config):
+        super(MainInterface, self).__init__(main_window)
         self.config = config
 
         # Main Window
@@ -138,6 +141,17 @@ class MainInterface(object):
         self.interpreter_combo.addItems(self.config["Languages"])
         self.tool_bar.addWidget(self.interpreter_combo)
 
+        # Tool Bar -> Run
+        self.interpreter_run = QPushButton()
+        self.interpreter_run.setSizePolicy(
+            QSizePolicy.Preferred,
+            QSizePolicy.Expanding
+        )
+        self.interpreter_run.setIcon(QIcon(":/icons/interpreter_run"))
+        self.interpreter_run.setFlat(True)
+        self.interpreter_run.installEventFilter(self)
+        self.tool_bar.addWidget(self.interpreter_run)
+
         # Status Bar
         self.status_bar = QtWidgets.QStatusBar(main_window)
         self.status_bar.setObjectName("status_bar")
@@ -145,6 +159,19 @@ class MainInterface(object):
 
         self.re_translate_ui(main_window)
         QtCore.QMetaObject.connectSlotsByName(main_window)
+
+    def eventFilter(self, source, event):
+
+        # Hover Effect
+        if source is self.interpreter_run:
+            if event.type() == QEvent.HoverEnter:
+                source.setFlat(False)
+
+            if event.type() == QEvent.HoverLeave:
+                source.setFlat(True)
+
+            return False
+        return False
 
     def re_translate_ui(self, main_window):
         _translate = QtCore.QCoreApplication.translate
