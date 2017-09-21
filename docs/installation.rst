@@ -29,6 +29,7 @@ AlphaHooks needs these packages to work properly.
 
 - `PyQt5 <https://www.riverbankcomputing.com/software/pyqt/download5>`_>=5.9
 - `qscintilla <https://www.riverbankcomputing.com/software/qscintilla/download>`_>=2.10.1
+- `json_config <http://json-config.readthedocs.io/en/develop/installation.html>`_>=2.0.1
 - `Sphinx <http://www.sphinx-doc.org/en/stable/tutorial.html#install-sphinx>`_>=1.6.3
 
 
