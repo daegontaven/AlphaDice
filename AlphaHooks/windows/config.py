@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtWidgets, Qsci
+from PyQt5.QtWidgets import QComboBox, QWidget, QSizePolicy
 
 from windows.settings.config import SettingsDialog
 
@@ -112,6 +113,29 @@ class MainInterface(object):
         self.settings_action.setShortcut('Ctrl+Alt+S')
         self.file_menu.addAction(self.settings_action)
         self.settings_action.triggered.connect(self.settings_dialog.show)
+
+        # Tool Bar
+        self.tool_bar = main_window.addToolBar('Main Tool Bar')
+        self.tool_bar.setMaximumHeight(
+            self.tool_bar.height() / 1.10
+        )
+
+        # Tool Bar Spacer
+        self.tool_bar_spacer = QWidget()
+        self.tool_bar_spacer.setSizePolicy(
+            QSizePolicy.Expanding,
+            QSizePolicy.Preferred
+        )
+        self.tool_bar_spacer.setVisible(True)
+        self.tool_bar.addWidget(self.tool_bar_spacer)
+
+        # Tool Bar -> Interpreter
+        self.interpreter_combo = QComboBox()
+        self.interpreter_combo.setSizePolicy(
+            QSizePolicy.Preferred,
+            QSizePolicy.Expanding
+        )
+        self.tool_bar.addWidget(self.interpreter_combo)
 
         # Status Bar
         self.status_bar = QtWidgets.QStatusBar(main_window)
