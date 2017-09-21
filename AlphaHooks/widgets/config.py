@@ -19,8 +19,8 @@ class WidgetRunner(QObject):
 
     def stop(self):
         """
-        Stop all running widgets and it's threads.
+        Stop all running widgets, it's threads and any I/O tasks.
         """
         for child in self.findChildren(QObject):
-            if hasattr(child, "stop_thread"):
-                child.stop_thread()
+            if hasattr(child, "stop_running"):
+                child.stop_running()

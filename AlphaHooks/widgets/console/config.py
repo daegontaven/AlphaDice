@@ -32,13 +32,17 @@ class ConsoleProperty(QObject):
         self.ui.console_log.setWordWrapMode(QTextOption.WrapAnywhere)
 
         # Console Input History
-        self.index = 0
+        self.index = -1
         self.length = 0
+
+        readline.set_history_length(50)
+        self.ui.console_input.installEventFilter(self)
+
         try:
             open(self.HISTORY_PATH, "x")
         except FileExistsError:
             readline.read_history_file(self.HISTORY_PATH)
-        self.ui.console_input.installEventFilter(self)
+            self.length = readline.get_current_history_length()
 
         # Display
         self.display = PythonDisplay(self.ui, self.config, self)
@@ -68,15 +72,18 @@ class ConsoleProperty(QObject):
                         )
 
                 if event.key() == Qt.Key_Down:
-                    if self.index <= self.length:
+                    if self.index > 0:
                         self.index -= 1
-                    command = readline.get_history_item(
-                        self.length - self.index
-                    )
+                        command = readline.get_history_item(
+                            self.length - self.index
+                        )
 
-                    self.ui.console_input.setText(
-                        command
-                    )
+                        self.ui.console_input.setText(
+                            command
+                        )
 
             return False
         return False
+
+    def stop_running(self):
+        readline.write_history_file(self.HISTORY_PATH)
