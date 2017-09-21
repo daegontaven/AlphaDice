@@ -18,6 +18,7 @@ class PythonInterpreter(QObject, InteractiveConsole):
                    occurs.
     """
     push_command = pyqtSignal(str)
+    push_source = pyqtSignal(str)
     multi_line = pyqtSignal(bool)
     error = pyqtSignal(str)
 
@@ -36,13 +37,16 @@ class PythonInterpreter(QObject, InteractiveConsole):
         # Slots
         self.stream.written.connect(self.stream_buffer.consume)
         self.push_command.connect(self.command)
+        self.push_source.connect(self.source)
 
+    @pyqtSlot(str)
     def write(self, string):
         """
         Override and signal to write directly to console_log.
         Usually used to emit that a traceback happened.
         """
         self.error.emit(string)
+        print(string, file=sys.__stdout__)
 
     def runcode(self, code):
         """
@@ -67,3 +71,7 @@ class PythonInterpreter(QObject, InteractiveConsole):
         """
         result = self.push(command)
         self.multi_line.emit(result)
+
+    @pyqtSlot(str)
+    def source(self, source):
+        result = self.runsource(source)
