@@ -2,10 +2,6 @@ import time
 
 from PyQt5.QtCore import QObject, pyqtSignal, QTimer, pyqtSlot
 
-__author__ = "daegontaven"
-__copyright__ = "daegontaven"
-__license__ = "gpl3"
-
 
 class StringBuffer(QObject):
     """

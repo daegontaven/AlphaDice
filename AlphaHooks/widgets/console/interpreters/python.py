@@ -5,10 +5,6 @@ from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot
 
 from AlphaHooks.widgets.console.io import Stream, StringBuffer
 
-__author__ = "daegontaven"
-__copyright__ = "daegontaven"
-__license__ = "gpl3"
-
 
 class PythonInterpreter(QObject, InteractiveConsole):
     """

@@ -1,9 +1,5 @@
 from PyQt5.Qsci import QsciScintilla
 
-__author__ = "daegontaven"
-__copyright__ = "daegontaven"
-__license__ = "gpl3"
-
 
 class LexerBase:
     """

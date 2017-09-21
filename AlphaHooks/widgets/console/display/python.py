@@ -3,10 +3,6 @@ from PyQt5.QtGui import QTextCursor
 
 from AlphaHooks.widgets.console.interpreters import PythonInterpreter
 
-__author__ = "daegontaven"
-__copyright__ = "daegontaven"
-__license__ = "gpl3"
-
 
 class PythonDisplay(QObject):
     def __init__(self, ui, config, parent=None, **kwargs):
