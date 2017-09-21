@@ -135,6 +135,7 @@ class MainInterface(object):
             QSizePolicy.Preferred,
             QSizePolicy.Expanding
         )
+        self.interpreter_combo.addItems(self.config["Languages"])
         self.tool_bar.addWidget(self.interpreter_combo)
 
         # Status Bar
