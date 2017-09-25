@@ -1,8 +1,8 @@
 from PyQt5.QtWidgets import (QWidget, QHBoxLayout, QVBoxLayout, QTreeWidget,
                              QStackedWidget)
 
-from widgets.collections import Populate
-from windows.settings.root import ConsoleSettings
+from AlphaHooks.widgets.collections import Populate
+from AlphaHooks.windows.settings.root import ConsoleSettings
 
 
 class SettingsDialog(QWidget):
