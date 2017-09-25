@@ -4,7 +4,7 @@ import sys
 import json_config
 from PyQt5.QtWidgets import (QApplication, QMainWindow)
 
-import resources
+from AlphaHooks import resources
 from AlphaHooks.widgets.config import WidgetRunner
 from AlphaHooks.windows.config import MainInterface
 

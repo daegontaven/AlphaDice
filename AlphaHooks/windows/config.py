@@ -3,7 +3,7 @@ from PyQt5.QtCore import QObject, QEvent
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QComboBox, QWidget, QSizePolicy, QPushButton
 
-from windows.settings.config import SettingsDialog
+from AlphaHooks.windows.settings.config import SettingsDialog
 
 
 class MainInterface(QObject):
