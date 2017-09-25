@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QObject
+from qtpy.QtCore import QObject
 
 from AlphaHooks.widgets import EditorProperty
 from AlphaHooks.widgets.console import ConsoleProperty

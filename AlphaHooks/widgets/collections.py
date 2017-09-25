@@ -1,5 +1,5 @@
-from PyQt5.QtCore import QObject
-from PyQt5.QtWidgets import QTreeWidgetItem, QWidget
+from qtpy.QtCore import QObject
+from qtpy.QtWidgets import QTreeWidgetItem, QWidget
 
 
 class Populate(QObject):
