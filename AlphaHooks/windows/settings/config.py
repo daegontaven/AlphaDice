@@ -1,5 +1,5 @@
-from PyQt5.QtWidgets import (QWidget, QHBoxLayout, QVBoxLayout, QTreeWidget,
-                             QStackedWidget)
+from qtpy.QtWidgets import (QWidget, QHBoxLayout, QVBoxLayout, QTreeWidget,
+                            QStackedWidget)
 
 from AlphaHooks.widgets.collections import Populate
 from AlphaHooks.windows.settings.root import ConsoleSettings

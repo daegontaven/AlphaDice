@@ -1,5 +1,5 @@
-from PyQt5.QtCore import QThread, QObject
-from PyQt5.QtGui import QTextCursor
+from qtpy.QtCore import QThread, QObject
+from qtpy.QtGui import QTextCursor
 
 from AlphaHooks.widgets.console.interpreters import PythonInterpreter
 

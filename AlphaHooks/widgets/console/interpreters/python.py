@@ -1,7 +1,7 @@
 import sys
 from code import InteractiveConsole
 
-from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot
+from qtpy.QtCore import QObject, Signal, Slot
 
 from AlphaHooks.widgets.console.io import Stream, StringBuffer
 
@@ -17,10 +17,10 @@ class PythonInterpreter(QObject, InteractiveConsole):
     :signal error: send stderr immediately to console_log if an error
                    occurs.
     """
-    push_command = pyqtSignal(str)
-    push_source = pyqtSignal(str)
-    multi_line = pyqtSignal(bool)
-    error = pyqtSignal(str)
+    push_command = Signal(str)
+    push_source = Signal(str)
+    multi_line = Signal(bool)
+    error = Signal(str)
 
     def __init__(self, config, parent=None):
         super(PythonInterpreter, self).__init__(parent)
@@ -39,7 +39,7 @@ class PythonInterpreter(QObject, InteractiveConsole):
         self.push_command.connect(self.command)
         self.push_source.connect(self.source)
 
-    @pyqtSlot(str)
+    @Slot(str)
     def write(self, string):
         """
         Override and signal to write directly to console_log.
@@ -61,7 +61,7 @@ class PythonInterpreter(QObject, InteractiveConsole):
         sys.stderr = sys.__stderr__
         return result
 
-    @pyqtSlot(str)
+    @Slot(str)
     def command(self, command):
         """
         Get line of code to be run and signal if more lines needed.
@@ -72,6 +72,6 @@ class PythonInterpreter(QObject, InteractiveConsole):
         result = self.push(command)
         self.multi_line.emit(result)
 
-    @pyqtSlot(str)
+    @Slot(str)
     def source(self, source):
         result = self.runsource(source)
