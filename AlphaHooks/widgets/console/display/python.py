@@ -41,6 +41,7 @@ class PythonDisplay(QObject):
 
         # Slots
         self.ui.console_input.returnPressed.connect(self.send_console_input)
+        self.ui.interpreter_run.clicked.connect(self.send_console_source)
         self.interpreter.stream_buffer.output.connect(self.send_console_log)
         self.interpreter.error.connect(self.send_console_log)
         self.interpreter.multi_line.connect(self.prompt)
@@ -64,6 +65,10 @@ class PythonDisplay(QObject):
         command = self.ui.console_input.text()
         self.ui.console_input.clear()
         self.interpreter.push_command.emit(str(command))
+
+    def send_console_source(self):
+        source = self.ui.code_editor.text()
+        self.interpreter.push_source.emit(source)
 
     def send_console_log(self, string):
         """

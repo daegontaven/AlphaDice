@@ -29,10 +29,7 @@ class PythonLexer(LexerBase):
         self.ui.code_editor.setAutoCompletionThreshold(1)
         self.ui.code_editor.setAutoCompletionSource(QsciScintilla.AcsAPIs)
 
-        # Auto Indentation
-        self.ui.code_editor.setAutoIndent(True)
-        self.ui.code_editor.setIndentationGuides(True)
-        self.ui.code_editor.setIndentationsUseTabs(True)
+        # Indentation
         self.ui.code_editor.setIndentationWidth(4)
 
         # Font Settings
