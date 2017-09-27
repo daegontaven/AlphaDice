@@ -23,13 +23,14 @@ platform:
 
 init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
+  - "ECHO %PATH%"
 
 install:
   - "%PYTHON%/Scripts/pip.exe install ."
 
 test_script:
-  - ps: "pip freeze | findstr QtPy"
-  - ps: "pip freeze | findstr PyQt5"
-  - ps: "pip freeze | findstr QScintilla"
-  - ps: "pip freeze | findstr json-config"
-  - ps: "pip freeze | findstr Sphinx"
+  - ps: "%PYTHON%/Scripts/pip.exe freeze | findstr QtPy"
+  - ps: "%PYTHON%/Scripts/pip.exe freeze | findstr PyQt5"
+  - ps: "%PYTHON%/Scripts/pip.exe freeze | findstr QScintilla"
+  - ps: "%PYTHON%/Scripts/pip.exe freeze | findstr json-config"
+  - ps: "%PYTHON%/Scripts/pip.exe freeze | findstr Sphinx"
