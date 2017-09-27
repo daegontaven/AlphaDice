@@ -23,9 +23,9 @@ platform:
 
 init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
-  - "set PATH=%PATH%;%PYTHON%;%PYTHON%\\Scripts"
 
 install:
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
   - "pip install ."
 
 test_script:
