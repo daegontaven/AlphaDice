@@ -28,8 +28,8 @@ install:
   - "%PYTHON%/Scripts/pip.exe install ."
 
 test_script:
-  - "pip freeze | grep QtPy"
-  - "pip freeze | grep PyQt5"
-  - "pip freeze | grep QScintilla"
-  - "pip freeze | grep json-config"
-  - "pip freeze | grep Sphinx"
+  - ps: "pip freeze | grep QtPy"
+  - ps: "pip freeze | grep PyQt5"
+  - ps: "pip freeze | grep QScintilla"
+  - ps: "pip freeze | grep json-config"
+  - ps: "pip freeze | grep Sphinx"
