@@ -23,7 +23,7 @@ platform:
 
 init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
-  - "set PATH=%PATH%;%PYTHON%;%PYTHON%\Scripts"
+  - "set PATH=%PATH%;%PYTHON%;%PYTHON%\\Scripts"
 
 install:
   - "pip install ."
