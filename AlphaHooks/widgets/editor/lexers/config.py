@@ -1,7 +1,7 @@
-from PyQt5.Qsci import QsciScintilla
+from qtpy.QtCore import QObject
 
 
-class LexerBase:
+class LexerBase(QObject):
     """
     Common properties of all lexers.
     """
@@ -12,7 +12,3 @@ class LexerBase:
         """
         self.ui = ui
         self.font = font
-
-        # Configurations
-        self.ui.code_editor.setBraceMatching(QsciScintilla.SloppyBraceMatch)
-        self.ui.code_editor.setIndentationsUseTabs(False)

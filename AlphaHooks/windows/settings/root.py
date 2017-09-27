@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QLabel, QGridLayout, QSpinBox
+from qtpy.QtWidgets import QWidget, QLabel, QGridLayout, QSpinBox
 
 
 class ConsoleSettings(QWidget):
