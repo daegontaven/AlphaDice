@@ -23,7 +23,7 @@ platform:
 
 init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  - ps: if (Get-ChildItem Env:ENABLE_RDP -ErrorAction SilentlyContinue) {iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))} else {echo RDP not enabled}
 
 install:
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
@@ -35,3 +35,6 @@ test_script:
   - ps: "pip freeze | findstr QScintilla"
   - ps: "pip freeze | findstr json-config"
   - ps: "pip freeze | findstr Sphinx"
+
+on_finish:
+  - ps: if (Get-ChildItem Env:ENABLE_RDP -ErrorAction SilentlyContinue) {$blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))} else {echo RDP not enabled}
