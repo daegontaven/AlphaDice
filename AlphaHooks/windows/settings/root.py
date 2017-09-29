@@ -43,3 +43,8 @@ class ConsoleSettings(QWidget):
             lambda value: self.config["Console"].__setitem__(
                 "Write Delay", value)
         )
+
+        self.scrollback_buffer_edit.valueChanged.connect(
+            lambda value: self.config["Console"].__setitem__(
+                "Scrollback Buffer", value)
+        )

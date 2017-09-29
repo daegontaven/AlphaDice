@@ -30,11 +30,7 @@ install:
   - "pip install ."
 
 test_script:
-  - ps: "pip freeze | findstr QtPy"
-  - ps: "pip freeze | findstr PyQt5"
-  - ps: "pip freeze | findstr QScintilla"
-  - ps: "pip freeze | findstr json-config"
-  - ps: "pip freeze | findstr Sphinx"
+  - ps: "python setup.py tests"
 
 on_finish:
   - ps: if (Get-ChildItem Env:ENABLE_RDP -ErrorAction SilentlyContinue) {$blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))} else {echo RDP not enabled}
