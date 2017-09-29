@@ -11,3 +11,8 @@ Issues
 When opening new issues, if it is a bug, make sure to describe the bug in as detail as possible and some steps to reproduce the bug. If it's a feature or an enhancement, explain why it is needed.
 
 `#5 <https://github.com/daegontaven/AlphaHooks/issues/5#issue-247267430>`_ is a good example of nicely formatted issue.
+
+Pull Requests
+-------------
+
+We follow `Github Flow <https://guides.github.com/introduction/flow/>`_ as our workflow when creating pull requests. It is a  neater and easier way to manage changes.
