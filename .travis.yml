@@ -27,5 +27,8 @@ install:
   - sudo apt-get update
   - sudo apt-get install -y xvfb herbstluftwm  # Window Manager
   - pip install .
+before_script:
+  - "herbstluftwm &"
+  - sleep 3  # Give herbstluftwm time to load
 script:
   - python setup.py tests
