@@ -25,10 +25,10 @@ notifications:
     on_start: never
 install:
   - sudo apt-get update
-  - sudo apt-get install -y xvfb herbstluftwm  # Window Manager
   - pip install .
 before_script:
-  - "herbstluftwm &"
-  - sleep 3  # Give herbstluftwm time to load
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
 script:
   - python setup.py tests
