@@ -3,3 +3,4 @@ PyQt5>=5.9
 qscintilla>=2.10.1
 json_config>=2.0.1
 Sphinx>=1.6.3
+pyreadline==2.1
