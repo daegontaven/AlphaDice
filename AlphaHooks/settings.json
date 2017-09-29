@@ -1,7 +1,7 @@
 {
   "Console": {
-    "Scrollback Buffer": 500,
-    "Write Delay": 100
+    "Scrollback Buffer": 3862,
+    "Write Delay": 251
   },
   "Languages": [
     "Python"
