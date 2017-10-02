@@ -25,7 +25,7 @@ notifications:
     on_start: never
 install:
   - sudo apt-get update
-  - pip install .
+  - pip install .[TESTS]
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
