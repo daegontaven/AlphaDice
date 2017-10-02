@@ -27,7 +27,7 @@ init:
 
 install:
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-  - "pip install ."
+  - "pip install .[TESTS]"
 
 test_script:
   - ps: "python setup.py tests"
