@@ -1,8 +1,8 @@
 from PyQt5 import Qsci
-from qtpy import QtCore, QtWidgets
-from qtpy.QtCore import QObject, QEvent
-from qtpy.QtGui import QIcon
-from qtpy.QtWidgets import QComboBox, QWidget, QSizePolicy, QPushButton
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtCore import QObject, QEvent
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QComboBox, QWidget, QSizePolicy, QPushButton
 
 from AlphaHooks.windows.settings.config import SettingsDialog
 

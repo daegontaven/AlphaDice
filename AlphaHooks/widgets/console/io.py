@@ -1,6 +1,6 @@
 import time
 
-from qtpy.QtCore import QObject, Signal, QTimer, Slot
+from PyQt5.QtCore import QObject, pyqtSignal, QTimer, pyqtSlot
 
 
 class StringBuffer(QObject):
@@ -9,7 +9,7 @@ class StringBuffer(QObject):
 
     :signal output: string(s) to be emitted
     """
-    output = Signal(str)
+    output = pyqtSignal(str)
 
     def __init__(self, parent=None, delay=50):
         super(StringBuffer, self).__init__(parent)
@@ -22,7 +22,7 @@ class StringBuffer(QObject):
         self.timer.setSingleShot(True)
         self.timer.timeout.connect(self.flush)
 
-    @Slot(str)
+    @pyqtSlot(str)
     def consume(self, string):
         """
         Add a string to the buffer and determine if
@@ -57,7 +57,7 @@ class Stream(QObject):
 
     :signal written: emit what was written
     """
-    written = Signal(str)
+    written = pyqtSignal(str)
 
     def __init__(self, parent=None):
         super(Stream, self).__init__(parent)

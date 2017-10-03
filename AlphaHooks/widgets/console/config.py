@@ -1,7 +1,7 @@
 import readline
 
-from qtpy.QtCore import QObject, QEvent, Qt
-from qtpy.QtGui import QTextOption
+from PyQt5.QtCore import QObject, QEvent, Qt
+from PyQt5.QtGui import QTextOption
 
 from AlphaHooks.widgets.console.display import PythonDisplay
 

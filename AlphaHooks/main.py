@@ -2,7 +2,7 @@ import os
 import sys
 
 import json_config
-from qtpy.QtWidgets import (QApplication, QMainWindow)
+from PyQt5.QtWidgets import (QApplication, QMainWindow)
 
 from AlphaHooks import resources
 from AlphaHooks.widgets.config import WidgetRunner

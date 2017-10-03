@@ -1,8 +1,8 @@
 import sys
 
 from PyQt5.Qsci import QsciScintilla
-from qtpy.QtCore import QObject
-from qtpy.QtGui import QFont
+from PyQt5.QtCore import QObject
+from PyQt5.QtGui import QFont
 
 from AlphaHooks.widgets.editor.lexers import PythonLexer
 
