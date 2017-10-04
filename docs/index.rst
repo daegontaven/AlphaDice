@@ -17,6 +17,7 @@ Contents
 
    License <license>
    Installation <installation>
+   Contributing <contributing/index>
    Modules Reference <api/modules>
 
 
@@ -31,7 +32,7 @@ Indices and tables
 
    <script>
      ((window.gitter = {}).chat = {}).options = {
-       room: 'AlphaHooks/Lobby'
+       room: 'AlphaHooks/Development'
      };
    </script>
    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
