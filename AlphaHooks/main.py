@@ -20,10 +20,17 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
         self.resources = resources
 
+        # Build Absolute Paths
+        self.main_abs_path = os.path.dirname(__file__)
+        self.settings_abs_path = os.path.join(
+            self.main_abs_path, self.SETTINGS_PATH
+        )
+
+        # Make data folder if it doesn't exist
         if not os.path.isdir(self.DATA_PATH):
             os.mkdir(self.DATA_PATH)
 
-        self.config = json_config.connect(self.SETTINGS_PATH)
+        self.config = json_config.connect(self.settings_abs_path)
         self.ui = MainInterface(self, self.config)
         self.widgets = WidgetRunner(self.ui, self.config, self)
 
