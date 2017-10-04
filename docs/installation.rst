@@ -58,6 +58,10 @@ Run AlphaHooks
 Running directly
 ----------------
 
+.. note::
+
+    This will not work until the first `Python Pre-Alpha <https://github.com/AlphaHooks/AlphaHooks/milestone/1>`_ is released.
+
 `Installing from source`_ is not required. Installing the requirements and just running ``main.py`` will work fine.
 
 ::
