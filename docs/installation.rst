@@ -36,11 +36,11 @@ AlphaHooks needs these packages to work properly.
 Installation
 ^^^^^^^^^^^^
 
-Grab the development version from Github.
+Grab the latest version from Github.
 
 ::
 
-    git clone https://github.com/daegontaven/AlphaHooks.git
+    git clone https://github.com/AlphaHooks/AlphaHooks.git
 
 Change into the directory and install with ``pip``.
 
