@@ -37,7 +37,7 @@ class PythonInterpreter(QObject, InteractiveConsole):
         # Slots
         self.stream.written.connect(self.stream_buffer.consume)
         self.push_command.connect(self.command)
-        self.push_source.connect(self.source)
+        self.push_source.connect(self.runcode)
 
     @pyqtSlot(str)
     def write(self, string):
@@ -47,6 +47,7 @@ class PythonInterpreter(QObject, InteractiveConsole):
         """
         self.error.emit(string)
 
+    @pyqtSlot(str)
     def runcode(self, code):
         """
         Overrides and captures stdout and stdin from
@@ -70,7 +71,3 @@ class PythonInterpreter(QObject, InteractiveConsole):
         """
         result = self.push(command)
         self.multi_line.emit(result)
-
-    @pyqtSlot(str)
-    def source(self, source):
-        result = self.runsource(source)
