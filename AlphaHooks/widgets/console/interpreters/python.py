@@ -12,6 +12,7 @@ class PythonInterpreter(QObject, InteractiveConsole):
     work with threads.
 
     :signal push_command: receive commands from console_input
+    :signal push_source: receive source code from the code editor
     :signal multi_line: signal whether more lines are needed by the
                         interpreter
     :signal error: send stderr immediately to console_log if an error
@@ -20,6 +21,7 @@ class PythonInterpreter(QObject, InteractiveConsole):
     push_command = pyqtSignal(str)
     push_source = pyqtSignal(str)
     multi_line = pyqtSignal(bool)
+    running = pyqtSignal(bool)
     error = pyqtSignal(str)
 
     def __init__(self, config, parent=None):
@@ -56,7 +58,9 @@ class PythonInterpreter(QObject, InteractiveConsole):
         sys.stdout = self.stream
         sys.stderr = self.stream
         sys.excepthook = sys.__excepthook__
+        self.running.emit(True)
         result = InteractiveConsole.runcode(self, code)
+        self.running.emit(False)
         sys.stdout = sys.__stdout__
         sys.stderr = sys.__stderr__
         return result

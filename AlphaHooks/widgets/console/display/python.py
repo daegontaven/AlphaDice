@@ -1,5 +1,5 @@
 from PyQt5.QtCore import QThread, QObject
-from PyQt5.QtGui import QTextCursor
+from PyQt5.QtGui import QTextCursor, QIcon
 
 from AlphaHooks.widgets.console.interpreters import PythonInterpreter
 
@@ -39,10 +39,14 @@ class PythonDisplay(QObject):
         self.interpreter = PythonInterpreter(self.config)
         self.interpreter.moveToThread(self.thread)
 
+        # States
+        self.running = False
+
         # Slots
         self.ui.console_input.returnPressed.connect(self.send_console_input)
         self.ui.interpreter_run.clicked.connect(self.send_console_source)
         self.interpreter.stream_buffer.output.connect(self.send_console_log)
+        self.interpreter.running.connect(self.change_running_state)
         self.interpreter.error.connect(self.send_console_log)
         self.interpreter.multi_line.connect(self.prompt)
 
@@ -67,8 +71,14 @@ class PythonDisplay(QObject):
         self.interpreter.push_command.emit(str(command))
 
     def send_console_source(self):
-        source = self.ui.code_editor.text()
-        self.interpreter.push_source.emit(source)
+        """
+        Check if the interpreter is running. If it isn't
+        take the source from the editor and push it to
+        the interpreter.
+        """
+        if self.running is False:
+            source = self.ui.code_editor.text()
+            self.interpreter.push_source.emit(source)
 
     def send_console_log(self, string):
         """
@@ -86,6 +96,13 @@ class PythonDisplay(QObject):
 
         # Move scrollbar
         self.scrollbar.setValue(self.scrollbar.maximum())
+
+    def change_running_state(self, state):
+        if state is True:
+            self.ui.interpreter_run.setIcon(QIcon(":/icons/interpreter_stop"))
+        else:
+            self.ui.interpreter_run.setIcon(QIcon(":/icons/interpreter_run"))
+        self.running = state
 
     def stop_running(self):
         self.thread.quit()
