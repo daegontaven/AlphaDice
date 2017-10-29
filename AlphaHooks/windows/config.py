@@ -164,7 +164,10 @@ class MainInterface(QObject):
     def eventFilter(self, source, event):
 
         # Hover Effect
-        if source is self.interpreter_run:
+        hover_items = [
+            self.interpreter_run
+        ]
+        if source in hover_items:
             if event.type() == QEvent.HoverEnter:
                 source.setFlat(False)
 
