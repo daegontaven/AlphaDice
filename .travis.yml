@@ -1,7 +1,6 @@
 sudo: required
 language: python
 python:
-  - "3.5.4"
   - "3.6"
 os:
   - linux
@@ -25,7 +24,8 @@ notifications:
     on_start: never
 install:
   - sudo apt-get update
-  - pip install .[TESTS]
+  - pip install pipenv
+  - pipenv install .[TESTS]
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
