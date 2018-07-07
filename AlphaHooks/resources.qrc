@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/icons">
-        <file alias="interpreter_run">files/images/icons/toolbar/interpreter_run.png</file>
-        <file alias="interpreter_stop">files/images/icons/toolbar/interpreter_stop.png</file>
-    </qresource>
-</RCC>

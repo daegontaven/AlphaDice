@@ -8,7 +8,8 @@ name = "pypi"
 QScintilla = ">=2.10.1"
 json_config = ">=2.0.1"
 Sphinx = ">=1.6.3"
-"e1839a8" = {path = ".", extras = ["tests"]}
+"e1839a8" = {path = ".", extras = ["tests"], editable = true}
+qtconsole = "*"
 
 [dev-packages]
 

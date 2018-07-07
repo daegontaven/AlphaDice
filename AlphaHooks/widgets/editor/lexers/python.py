@@ -3,7 +3,7 @@ import builtins
 from PyQt5.Qsci import QsciScintilla, QsciLexerPython, QsciAPIs
 from PyQt5.QtGui import QFontMetrics
 
-from AlphaHooks.widgets.editor.lexers.config import LexerBase
+from AlphaHooks.widgets.editor.lexers import LexerBase
 
 
 class PythonLexer(LexerBase):
@@ -15,9 +15,9 @@ class PythonLexer(LexerBase):
         Sets the default properties for the Python lexer.
         """
         # Lexer Initialization
-        lexer = QsciLexerPython(self.ui.code_editor)
+        lexer = QsciLexerPython(self.code_editor)
         lexer.setDefaultFont(self.font)
-        self.ui.code_editor.setLexer(lexer)
+        self.code_editor.setLexer(lexer)
 
         # Auto Completion
         api = QsciAPIs(lexer)
@@ -26,15 +26,15 @@ class PythonLexer(LexerBase):
                 api.add(var)
         api.prepare()
 
-        self.ui.code_editor.setAutoCompletionThreshold(1)
-        self.ui.code_editor.setAutoCompletionSource(QsciScintilla.AcsAPIs)
+        self.code_editor.setAutoCompletionThreshold(1)
+        self.code_editor.setAutoCompletionSource(QsciScintilla.AcsAPIs)
 
         # Indentation
-        self.ui.code_editor.setIndentationWidth(4)
+        self.code_editor.setIndentationWidth(4)
 
         # Font Settings
         font_metrics = QFontMetrics(self.font)
-        self.ui.code_editor.setMinimumSize(
+        self.code_editor.setMinimumSize(
             int(font_metrics.width("0" * 80)),
             0
         )
