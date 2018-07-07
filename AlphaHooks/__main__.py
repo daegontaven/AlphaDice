@@ -2,9 +2,10 @@ import sys
 
 from PyQt5.QtCore import QObject, Qt
 from PyQt5.QtWidgets import QMainWindow, QApplication, QDockWidget, \
-    QTextEdit, QListWidget, QStatusBar
+    QTextEdit, QListWidget, QStatusBar, QTabWidget, QWidget
 
-from AlphaHooks.widgets.editor import CodeEditor
+from AlphaHooks.widgets.editor import Editor
+from AlphaHooks.widgets.editor.tabs import EditorTabs
 
 
 class MainWindow(QMainWindow):
@@ -30,14 +31,18 @@ class MainWindow(QMainWindow):
         self.project_dock.setWidget(self.project)
         self.addDockWidget(Qt.LeftDockWidgetArea, self.project_dock)
 
-        # Code Editor
-        # Move this part to a tabbed widget.
-        # Create a bottom tabbed widget and in the first tab "Code", add
-        # another tabbed widget with file tabs. The next outer tab
-        # should be called "Live" or something similar to represent
-        # real-time output like streaming plots and video.
-        self.code_editor = CodeEditor(self)
-        self.setCentralWidget(self.code_editor)
+        # Workspace
+        self.workspace = QTabWidget()
+        self.workspace.setTabPosition(QTabWidget.South)
+        self.setCentralWidget(self.workspace)
+
+        # Editor
+        self.editor_tabs = EditorTabs()
+        self.workspace.addTab(self.editor_tabs, "Editor")
+
+        # Monitor
+        self.monitor = QWidget()
+        self.workspace.addTab(self.monitor, "Monitor")
 
         # Jupyter Widget
         self.jupyter_dock = QDockWidget("Jupyter", self)

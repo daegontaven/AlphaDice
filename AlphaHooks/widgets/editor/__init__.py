@@ -7,7 +7,7 @@ from PyQt5.QtGui import QFont
 from AlphaHooks.widgets.editor.lexers.python import PythonLexer
 
 
-class CodeEditor(Qsci.QsciScintilla):
+class Editor(Qsci.QsciScintilla):
     """
     Provides access to methods of editor.
     """
@@ -16,7 +16,7 @@ class CodeEditor(Qsci.QsciScintilla):
         Loads default configuration for code_editor including
         the lexer depending on the kernel.
         """
-        super(CodeEditor, self).__init__(parent)
+        super(Editor, self).__init__(parent)
 
         # Fonts
         self.font = QFont()
