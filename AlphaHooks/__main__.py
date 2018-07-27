@@ -2,10 +2,10 @@ import sys
 
 from PyQt5.QtCore import QObject, Qt
 from PyQt5.QtWidgets import QMainWindow, QApplication, QDockWidget, \
-    QTextEdit, QListWidget, QStatusBar, QTabWidget, QWidget
+    QListWidget, QStatusBar, QTabWidget, QWidget
 
-from AlphaHooks.widgets.editor import Editor
 from AlphaHooks.widgets.editor.tabs import EditorTabs
+from AlphaHooks.widgets.jupyter import TabbedJupyterWidget
 
 
 class MainWindow(QMainWindow):
@@ -49,7 +49,7 @@ class MainWindow(QMainWindow):
         self.jupyter_dock.setFloating(False)
         self.jupyter_dock.setAllowedAreas(Qt.AllDockWidgetAreas)
 
-        self.jupyter = QTextEdit(self)  # Mock Jupyter Widget
+        self.jupyter = TabbedJupyterWidget()
         self.jupyter_dock.setWidget(self.jupyter)
         self.addDockWidget(Qt.RightDockWidgetArea, self.jupyter_dock)
 
