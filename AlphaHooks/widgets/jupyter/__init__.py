@@ -11,7 +11,8 @@ class TabbedJupyterWidget(QTabWidget):
         self.setTabPosition(QTabWidget.South)
 
         # Default Tab
-        self.addTab(self.start_kernel('python'), 'Python')
+        self.jupyter_widget = self.start_kernel('python')
+        self.addTab(self.jupyter_widget, 'Python')
 
         # Create a tab creation method that also keeps track of the
         # jupyter objects created.

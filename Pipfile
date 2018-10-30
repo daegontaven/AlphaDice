@@ -1,15 +1,14 @@
 [[source]]
-url = "https://pypi.python.org/simple"
+url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
 [packages]
-"PyQt5" = ">=5.9"
-QScintilla = ">=2.10.1"
-json_config = ">=2.0.1"
-Sphinx = ">=1.6.3"
-"e1839a8" = {path = ".", extras = ["tests"], editable = true}
 qtconsole = "*"
+"PyQt5" = "*"
+QScintilla = "*"
+Sphinx = "*"
+"e1839a8" = {path = ".", editable = true}
 
 [dev-packages]
 
