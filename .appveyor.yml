@@ -18,7 +18,7 @@ install:
   - "pip install pipenv"
   - "pipenv install .[TESTS]"
 before_test:
-  - pyrcc5 -o AlphaHooks/resources.py AlphaHooks/resources.qrc
+#  - pyrcc5 -o AlphaHooks/resources.py AlphaHooks/resources.qrc
 test_script:
   - ps: "python setup.py tests"
 on_finish:
