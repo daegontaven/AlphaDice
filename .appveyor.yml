@@ -22,5 +22,5 @@ before_test:
 test_script:
   - "pipenv run python setup.py tests"
 on_finish:
-  - ps: if (Get-ChildItem Env:ENABLE_RDP -ErrorAction SilentlyContinue) {$blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))} else {echo "RDP Not Enabled"}
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - ps: if (Get-ChildItem Env:ENABLE_RDP -ErrorAction SilentlyContinue) {$blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))} else {echo "RDP Not Enabled"}
